@@ -1,0 +1,106 @@
+'''
+Miu puzzle adaptation to python
+Lohen Kinsman
+week 9
+'''
+
+# Function for a Yes/No result based on the answer provided as an argument
+# yes no taken from overlaid.net
+
+def yes_no(answer):
+    yes = set(['yes','y', 'ye' ])
+    no = set(['no','n'])
+    
+    while True:
+        choice = input(answer).lower()
+        if choice in yes:
+           decision = True
+        elif choice in no:
+           decision = False
+        else:
+           print ("Please respond with 'yes' or 'no'\n")
+        return decision
+    
+'''       
+a function to add a u to the end if the last character is an i , I'm trying
+to include questions to address other strings and rules in one function, instead
+of having seperately called functions. the rules I need to write are: for m(x)
+you can have m(xx) and if you have UUU in a string, you can drop UU.
+''' 
+def mupuz() :
+#create a file and open it and print to verify the beginning
+    with open('mu.txt', 'w') as f:
+        f.write("Muuuiuuuuouuuuiuuuuuo")
+    with open('mu.txt') as f:
+        show = f.read()
+    
+    with open('mu.txt') as f:
+        show = f.read()
+        print(show)
+        while show != 'mu':
+#double the string after the M   
+            if len(show) > 1 and len(show) < 100: 
+                    result = yes_no("would you like to double the string of letters after M? ")
+                    if result == True:
+                        with open('mu.txt') as mu:
+                            with open('mu.txt') as mu:
+                              string =  mu.read()
+                              with open('mu.txt', 'a') as mu:
+                                    mu.write(string[1 :])
+                              with open('mu.txt') as mu:
+                                   show = mu.read()
+                                   print(show)
+                
+            if show[-1] == 'i' :
+                    result = yes_no("would you like to add a U? ")
+                    if result == True:
+                        with open('mu.txt','a') as mu:
+                            mu.write('u')
+                        with open('mu.txt') as mu:
+                            show = mu.read()
+                            print(show)
+                    else:
+                        show = show
+                        print(show)
+
+#replace 'iii' with 'u'                                   
+            
+            if 'iii' in show:
+                    result = yes_no("would you like to replace iii with u? ")
+                    if result == True:
+                        eye_str = input("enter the number of the first i in the string you want to remove: ")
+                        eye = int(eye_str)
+                        part1 = show[ : eye]
+                        part2 = show[eye + 3 : ]
+                        new = part1 + 'u' + part2
+                        with open('mu.txt' , 'w') as mu:
+                            mu.write(new)
+                        with open('mu.txt') as mu:
+                           show = mu.read()
+                           print(show)
+                    else:
+                        show = show
+                        print(show)
+
+            if 'uuu' in show:
+                    eye = show.find('uuu')
+                    result = yes_no("would you like to replace uuu with u? ")
+                    if result == True:
+                        ewe_str = input("enter the number of the first u in the string you want to remove: ")
+                        ewe = int(ewe_str)
+                        part1 = show[ : ewe ]
+                        part2 = show[ewe + 2 : ]
+                        show = part1 + part2
+                        with open('mu.txt' , 'w') as mu:
+                            mu.write(show)
+                        with open('mu.txt') as mu:
+                            show = mu.read()
+                            print(show)
+            else: finish()                     
+  
+def finish():
+    with open('mu.txt') as mu:
+        final = mu.read()
+        print(final)
+            
+mupuz()
