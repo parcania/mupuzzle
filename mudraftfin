@@ -1,0 +1,116 @@
+'''
+Miu puzzle adaptation to python
+Lohen Kinsman
+week 9
+'''
+import random
+
+# Function for a Yes/No result based on the answer provided as an argument
+# yes no taken from overlaid.net
+
+def yes_no(answer):
+    yes = set(['yes','y', 'ye' '' ])
+    no = set(['no','n'])
+    
+    while True:
+        choice = input(answer).lower()
+        if choice in yes:
+           decision = True
+        elif choice in no:
+           decision = False
+        else:
+           print ("Please respond with 'yes' or 'no'\n")
+        return decision
+
+
+
+
+def main() :
+#create a file and open it and print the beginning string
+ 
+    uiString = ''.join(random.choice('ui') for _ in range(random.randint(2,15)))
+    
+    with open('mu.txt', 'w') as f:
+        f.write("M" + uiString)    
+ ''' 
+#create a dictionary to hold values for each letter in the string
+    values = {'M' : 3,  'i' : 1, 'u' : 0 }
+    muNum = '3'
+    for i in range(len(uiString)):
+        c = uiString[i]
+        muNum += values[c]
+    print(muNum)
+'''
+    
+    with open('mu.txt') as f:
+        show = f.read()
+        print(show)
+    result = yes_no("do you think this puzzle is solveable?: ")
+    if result == True:
+
+        while show != 'mu':
+
+#double the string after the M   
+            if len(show) > 1 and len(show) < 100: 
+                    result = yes_no("would you like to double the string of letters after M? ")
+                    if result == True:
+                        with open('mu.txt') as mu:
+                            with open('mu.txt') as mu:
+                              string =  mu.read()
+                              with open('mu.txt', 'a') as mu:
+                                    mu.write(string[1 :])
+                              with open('mu.txt') as mu:
+                                   show = mu.read()
+                                   print(show)
+# if the last letter in the string is an i, you can add a u                
+            if show[-1] == 'i' :
+                    result = yes_no("would you like to add a U? ")
+                    if result == True:
+                        with open('mu.txt','a') as mu:
+                            mu.write('u')
+                        with open('mu.txt') as mu:
+                            show = mu.read()
+                            print(show)
+                    else:
+                        show = show
+                        print(show)
+
+#replace                                    
+            
+            if 'iii' in show:
+                    result = yes_no("would you like to replace iii with u? ")
+                    if result == True:
+                        eye_str = input("enter the number of the first i in the string you want to remove: ")
+                        eye = int(eye_str)
+                        part1 = show[ : eye]
+                        part2 = show[eye + 3 : ]
+                        new = part1 + 'u' + part2
+                        with open('mu.txt' , 'w') as mu:
+                            mu.write(new)
+                        with open('mu.txt') as mu:
+                           show = mu.read()
+                           print(show)
+                    else:
+                        show = show
+                        print(show)
+#remove any 'uu'
+            if 'uu' in show:
+                   #ewe = show.find('uu')
+                    result = yes_no("would you like to remove UU? ")
+                    if result == True:
+                        ewe_str = input("enter the number of the first u in the string you want to remove: ")
+                        ewe = int(ewe_str)
+                        part1 = show[ : ewe ]
+                        part2 = show[ewe +  2 : ]
+                        show = part1 + part2
+                        with open('mu.txt' , 'w') as mu:
+                            mu.write(show)
+                        with open('mu.txt') as mu:
+                            show = mu.read()
+                            print(show)
+       
+    else:
+        print("type main() to try again!")
+        
+
+main()
