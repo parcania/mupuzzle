@@ -25,10 +25,8 @@ def yes_no(answer):
 
 def mupuz() :
 #create a file and open it and print to verify the beginning string
-    m = 3
-    i = 1
-    u = 0
-    this = ''.join(random.choice(ui) for _ in range(random.randint(2,15)))
+    
+    this = ''.join(random.choice('ui') for _ in range(random.randint(2,15)))
     
     with open('mu.txt', 'w') as f:
         f.write("M" + this)
@@ -38,6 +36,9 @@ def mupuz() :
     with open('mu.txt') as f:
         show = f.read()
         print(show)
+        
+    result = yes_no("Do you think this puzzle can be solved?: ")
+    if result == True:
         while show != 'mu':
 #double the string after the M   
             if len(show) > 1 and len(show) < 100: 
@@ -51,6 +52,9 @@ def mupuz() :
                               with open('mu.txt') as mu:
                                    show = mu.read()
                                    print(show)
+                    else:
+                        show = show
+                        print(show)
 # if the last letter in the string is an i, you can add a u                
             if show[-1] == 'i' :
                     result = yes_no("would you like to add a U? ")
@@ -83,9 +87,9 @@ def mupuz() :
                         show = show
                         print(show)
 
-            if 'uuu' in show:
-                    eye = show.find('uuu')
-                    result = yes_no("would you like to replace uuu with u? ")
+            if 'uu' in show:
+                    eye = show.find('uu')
+                    result = yes_no("would you like to remove a 'uu'? ")
                     if result == True:
                         ewe_str = input("enter the number of the first u in the string you want to remove: ")
                         ewe = int(ewe_str)
@@ -97,6 +101,8 @@ def mupuz() :
                         with open('mu.txt') as mu:
                             show = mu.read()
                             print(show)
-           
+                    else:
+                        show = show
+                        print(show)
             
 mupuz()
