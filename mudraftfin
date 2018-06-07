@@ -1,7 +1,7 @@
 '''
 Miu puzzle adaptation to python
 Lohen Kinsman
-week 9
+week 100
 '''
 import random
 
@@ -30,18 +30,8 @@ def main() :
  
     uiString = ''.join(random.choice('ui') for _ in range(random.randint(2,15)))
     
-    with open('mu.txt', 'w') as f:
-        f.write("M" + uiString)    
- ''' 
-#create a dictionary to hold values for each letter in the string
-    values = {'M' : 3,  'i' : 1, 'u' : 0 }
-    muNum = '3'
-    for i in range(len(uiString)):
-        c = uiString[i]
-        muNum += values[c]
-    print(muNum)
-'''
     
+
     with open('mu.txt') as f:
         show = f.read()
         print(show)
