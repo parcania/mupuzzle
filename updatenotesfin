@@ -1,0 +1,129 @@
+import random
+# Function for a Yes/No result based on the answer provided as an argument
+# yes no taken from overlaid.net
+
+def yes_no(answer):
+    yes = set(['yes','y', 'ye' '' ])
+    no = set(['no','n'])
+
+    while True:
+        choice = input(answer).lower()
+        if choice in yes:
+           decision = True
+        elif choice in no:
+           decision = False
+        else:
+
+           print ("Please respond with 'yes' or 'no'\n")
+        return decision
+
+#creates a randomly generated string of alphabed 'u' and 'i' between 2 and 10 characters long
+
+
+def start():
+    uiString = ''.join(random.choice('ui') for _ in range(random.randint(2,10)))
+
+    #opens a file and writes an M followed by uiString
+    with open('mu.txt', 'w') as f:
+        f.write("M" + uiString)
+
+    #prints the string as written to the file to test the contents of the file and display the initial string to the user
+    with open('mu.txt') as f:
+        show = f.read()
+        print(show)
+
+    result = yes_no("do you think this puzzle is solveable?: ")
+
+    #if they say yes and the string is not 'Mu'
+    if result == True:
+            while show != 'Mu':
+
+    #double the string after the M but you can't create a string longer than a set number of characters
+                if len(show) > 1 and len(show) < 100:
+                        result = yes_no("would you like to double the string of letters after M? ")
+                        if result == True:
+                            with open('mu.txt') as mu:
+                                with open('mu.txt') as mu:
+                                  string =  mu.read()
+                                  with open('mu.txt', 'a') as mu:
+                                        mu.write(string[1 :])
+                                  with open('mu.txt') as mu:
+                                       show = mu.read()
+                                       print(show)
+                            if show == 'Mu':
+                                print('You did it!')
+                                break
+                        else:
+                            show = show
+                            print(show)
+
+    # if the last letter in the string is an i, you can add a u
+                if show[-1] == 'i' :
+                        result = yes_no("would you like to add a U? ")
+                        if result == True:
+                            with open('mu.txt','a') as mu:
+                                mu.write('u')
+                            with open('mu.txt') as mu:
+                                show = mu.read()
+                                print(show)
+                            if show == 'Mu':
+                                print('You did it!')
+                                break
+                        else:
+                            show = show
+                            print(show)
+
+    #replace iii with u
+
+                if 'iii' in show:
+                        result = yes_no("would you like to replace iii with u? ")
+                        if result == True:
+                            eye_str = input("enter the number of the first i in the string you want to remove: ")
+                            eye = int(eye_str)
+                            part1 = show[ : eye]
+                            part2 = show[eye + 3 : ]
+                            new = part1 + 'u' + part2
+                            with open('mu.txt' , 'w') as mu:
+                                mu.write(new)
+                            with open('mu.txt') as mu:
+                               show = mu.read()
+                               print(show)
+                            if show == 'Mu':
+                                print('You did it!')
+                                break
+                        else:
+                            show = show
+                            print(show)
+    #remove any 'uu'
+                if 'uu' in show:
+                       #ewe = show.find('uu')
+                        result = yes_no("would you like to remove UU? ")
+                        if result == True:
+                            ewe_str = input("enter the number of the first u in the string you want to remove: ")
+                            ewe = int(ewe_str)
+                            part1 = show[ : ewe ]
+                            part2 = show[ewe +  2 : ]
+                            show = part1 + part2
+                            with open('mu.txt' , 'w') as mu:
+                                mu.write(show)
+                            with open('mu.txt') as mu:
+                                show = mu.read()
+                                print(show)
+                            if show == 'Mu':
+                                print('You did it!')
+                                break
+                        else:
+                            show = show
+                            print(show)
+
+
+    else:
+        start()
+
+
+'''
+Questions:
+how to change the rules to make a puzzle that can be solved.
+since just converting the string to numbers and using modular arithmatic does not allow you to determine if the puzzle can be solved, is there an algorithm to determine it?
+in modulo arithmatic, can you just add the numbers in a large number and divide the sum mod x to determine it's remainder? IE 30111 mod 3 = 0 and 3+1+1+1 = 6 and 6 mod 3 = 0
+'''
