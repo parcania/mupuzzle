@@ -1,3 +1,10 @@
+'''
+the Mu puzzle is a string manipulation system that is based on ideas by Emil Post, the Mu
+puzzle was designed by Hofstadter for GEB.
+it is a very tiny example of a formal language, which is a set of strings of symbols with a rule set that is specific to it.
+they are common to computer science and mathematics.
+'''
+
 import random
 # Function for a Yes/No result based on the answer provided as an argument
 # yes no taken from overlaid.net
@@ -73,7 +80,9 @@ def start():
                             show = show
                             print(show)
 
-    #replace iii with u
+    #replace iii with u: achieved by splitting the string into 2 , with the first string up to the first i and the second string starting 3 indeces later
+    #the problem with asking the user to specify the index to start at is that
+    #there is no failsafe: you can remove any character and it won't stop you.
 
                 if 'iii' in show:
                         result = yes_no("would you like to replace iii with u? ")
@@ -119,7 +128,7 @@ def start():
 
     else:
         start()
-
+#problem : it only ends if you say it cant be solved at the beginning, or if you get Mu  and solve it. Their is no kill switch and it will loop forever asking  you to double the string
 
 '''
 Questions:
